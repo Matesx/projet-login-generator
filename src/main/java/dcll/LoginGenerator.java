@@ -35,15 +35,21 @@ public class LoginGenerator {
      * <li>Pierre Dupard -> PDUP1</li>
      * <li>Jacques Durand -> JDUR</li>
      * <li>Lionel R&eacute;gal -> LREG</li>
-     * </ul>
+     * </ul>.
      *
      * @param nom    le nom
      * @param prenom le prenom
      * @return le login genere
      */
-    public final String generateLoginForNomAndPrenom(String nom, String prenom) {
+    public final String generateLoginForNomAndPrenom(final String nom, final String prenom) {
         String p = deAccent(prenom.substring(0, 1).toUpperCase());
-        String n = deAccent(nom.substring(0, 3).toUpperCase());
+        String n;
+        if (nom.length() < 3) {
+            n = deAccent(nom.substring(0, 2).toUpperCase());
+        } else {
+            n = deAccent(nom.substring(0, 3).toUpperCase());
+        }
+
         String login = p + n;
         if (loginService.loginExists(login)) {
             login = login + "1";

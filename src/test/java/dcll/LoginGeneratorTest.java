@@ -21,7 +21,7 @@ public class LoginGeneratorTest {
 
     @Test
     public void testGenerateLoginForNomAndPrenom() throws Exception {
-        LoginService loginService = new LoginService(new String[] {"JROL", "BPER", "CGUR", "JDUP", "JRAL", "JRAL1"});
+        LoginService loginService = new LoginService(new String[]{"JROL", "BPER", "CGUR", "JDUP", "JRAL", "JRAL1"});
         LoginGenerator loginGenerator = new LoginGenerator(loginService);
 
         loginGenerator.generateLoginForNomAndPrenom("Durand", "Paul");
@@ -34,12 +34,24 @@ public class LoginGeneratorTest {
 
     @Test
     public void testGenerateLoginForNomAndPrenomVersionAccent() throws Exception {
-        LoginService loginService = new LoginService(new String[] {"JROL", "BPER", "CGUR", "JDUP", "JRAL", "JRAL1"});
+        LoginService loginService = new LoginService(new String[]{"JROL", "BPER", "CGUR", "JDUP", "JRAL", "JRAL1"});
         LoginGenerator loginGenerator = new LoginGenerator(loginService);
 
         loginGenerator.generateLoginForNomAndPrenom("Dùrand", "Paul");
         assertTrue(loginService.loginExists("PDUR"));
 
     }
+
+    @Test
+    public void testGenerateLoginForNomAndPrenomModifier() throws Exception {
+        LoginService loginService = new LoginService(new String[]{"JROL", "BPER", "CGUR", "JDUP", "JRAL", "JRAL1"});
+        LoginGenerator loginGenerator = new LoginGenerator(loginService);
+
+        loginGenerator.generateLoginForNomAndPrenom("Du", "Paul");
+        assertTrue(loginService.loginExists("PDU"));
+
+
+    }
+
 
 }

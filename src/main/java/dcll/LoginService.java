@@ -32,7 +32,7 @@ public class LoginService {
      * @param login le login a verifier
      * @return true si le login existe deja, false sinon
      */
-    public boolean loginExists(String login) {
+    public boolean loginExists(final String login) {
         return loginsExistants.contains(login);
     }
 
@@ -62,11 +62,11 @@ public class LoginService {
     }
 
     /**
-     * Recherche tous les logins
+     * Recherche tous les logins.
      *
      * @return la liste de tous les logins
      */
-    public List<String> findAllLogins() {
+    public final List<String> findAllLogins() {
         return loginsExistants;
     }
 }
